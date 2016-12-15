@@ -1,0 +1,31 @@
+<div ng-controller="NPFormCtrl as formPostCtrl">
+	<form method="post" name="frmPost" class="form-horizontal">
+		<div class="form-group" style="border:red 1px">
+			<label for="name" class="control-label col-md-4">Enter Name:</label>
+			<input type="text" name="name" ng-required="true" placeholder="Enter your name" ng-model="formPostCtrl.person.name" ng-class="{'has-error':frmPost.name.$invalid}"
+				class="col-md-4">
+			<div ng-show="frmPost.name.$touched" ng-messages="frmPost.name.$error" class="col-md-4">
+				<p ng-message="required">Name is required.</p>				
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="age" class="control-label col-md-4">Enter Age:</label>
+			<input type="text" name="age" ng-required="true" placeholder="Enter your Age" ng-pattern="/\d+/" ng-model="formPostCtrl.person.age" ng-class="{'has-error':frmPost.age.$invalid}"
+				class="col-md-4">
+			<div ng-show="frmPost.age.$touched" ng-messages="frmPost.age.$error" class="col-md-4">
+				<p ng-message="required">Age is required.</p>
+				<p ng-message="pattern">Age is invalid.</p>						
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="income" class="control-label col-md-4">Enter Income:</label>
+			<input type="text" name="income" ng-required="true" placeholder="Enter your Income" ng-pattern="/\d{1,5}/" ng-model="formPostCtrl.person.income"
+				ng-class="{'has-error':frmPost.income.$invalid}">
+			<div ng-show="frmPost.income.$touched" ng-messages="frmPost.income.$error" class="col-md-4">
+				<p ng-message="required">Income is required.</p>
+				<p ng-message="pattern">Invalid Income.</p>
+			</div>
+		</div>
+		<button ng-disabled="frmPost.$invalid"  ng-click="formPostCtrl.savePerson(frmPost,person)" type="submit" class="col-md-4 btn btn-success">Submit</button>
+	</form>
+</div>
