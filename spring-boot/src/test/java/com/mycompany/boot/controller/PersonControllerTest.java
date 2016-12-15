@@ -113,7 +113,7 @@ public class PersonControllerTest {
 	}
 	
 	@Test
-	@Timed(millis=1000)
+	//@Timed(millis=1000)
 	public void testGet() throws Exception {
 		this.mockMvc
 			.perform(get("/person/{name}","INTUSER").accept(expectedContentType)) //create request
