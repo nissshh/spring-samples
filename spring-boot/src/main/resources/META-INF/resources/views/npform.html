@@ -1,7 +1,7 @@
 <div ng-controller="NPFormCtrl as formPostCtrl">
 	<form method="post" name="frmPost" class="form-horizontal">
-		<div class="form-group" style="border:red 1px">
-			<label for="name" class="control-label col-md-4">Enter Name:</label>
+		<div class="form-group">
+			<label for="name" class="control-label col-md-4">Name:</label>
 			<input type="text" name="name" ng-required="true" placeholder="Enter your name" ng-model="formPostCtrl.person.name" ng-class="{'has-error':frmPost.name.$invalid}"
 				class="col-md-4">
 			<div ng-show="frmPost.name.$touched" ng-messages="frmPost.name.$error" class="col-md-4">
@@ -9,7 +9,7 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="age" class="control-label col-md-4">Enter Age:</label>
+			<label for="age" class="control-label col-md-4">Age:</label>
 			<input type="text" name="age" ng-required="true" placeholder="Enter your Age" ng-pattern="/\d+/" ng-model="formPostCtrl.person.age" ng-class="{'has-error':frmPost.age.$invalid}"
 				class="col-md-4">
 			<div ng-show="frmPost.age.$touched" ng-messages="frmPost.age.$error" class="col-md-4">
@@ -18,14 +18,55 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="income" class="control-label col-md-4">Enter Income:</label>
-			<input type="text" name="income" ng-required="true" placeholder="Enter your Income" ng-pattern="/\d{1,5}/" ng-model="formPostCtrl.person.income"
-				ng-class="{'has-error':frmPost.income.$invalid}">
-			<div ng-show="frmPost.income.$touched" ng-messages="frmPost.income.$error" class="col-md-4">
-				<p ng-message="required">Income is required.</p>
-				<p ng-message="pattern">Invalid Income.</p>
+			<label for="gender" class="control-label col-md-4">Gender:</label>
+			<!-- <input type="text" name="gender" ng-required="true" placeholder="Enter your Gender" ng-model="formPostCtrl.person.gender" ng-class="{'has-error':frmPost.gender.$invalid}"
+				class="col-md-4"> -->
+			<div class="col-md-4"> 
+				<div class="radio-inline">
+					<label><input type="radio" name="gender" value="Male" ng-required="true" ng-model="formPostCtrl.person.gender" ng-class="{'has-error':frmPost.gender.$invalid}">Male
+					</input></label>
+				</div>
+				<div class="radio-inline">
+					<label><input type="radio" name="gender" value="Female" ng-required="true" ng-model="formPostCtrl.person.gender" ng-class="{'has-error':frmPost.gender.$invalid}">Female 
+					</input></label>
+				</div>
+			</div>
+			<div ng-show="frmPost.gender.$touched" ng-messages="frmPost.gender.$error" class="col-md-4">
+				<p ng-message="required">Gender is required.</p>
 			</div>
 		</div>
-		<button ng-disabled="frmPost.$invalid"  ng-click="formPostCtrl.savePerson(frmPost,person)" type="submit" class="col-md-4 btn btn-success">Submit</button>
+		<div class="form-group">
+			<label for="phone" class="control-label col-md-4">Phone:</label>
+			<input type="text" name="phone" ng-required="true" placeholder="e.g. XXX-XXX-XXXX" ng-pattern="/^(\+?(\d{1}|\d{2}|\d{3})[- ]?)?\d{3}[- ]?\d{3}[- ]?\d{4}$/" ng-model="formPostCtrl.person.phone" ng-class="{'has-error':frmPost.phone.$invalid}"
+				class="col-md-4">
+			<div ng-show="frmPost.email.$touched" ng-messages="frmPost.phone.$error" class="col-md-4">
+				<p ng-message="required">Phone is required.</p>
+				<p ng-message="pattern">Phone is invalid.</p>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="email" class="control-label col-md-4">Email:</label>
+			<input type="email" name="email" ng-required="true" placeholder="e.g. yourbane@server.com" ng-model="formPostCtrl.person.email" ng-class="{'has-error':frmPost.email.$invalid}"
+				class="col-md-4">
+			<div ng-show="frmPost.email.$touched" ng-messages="frmPost.email.$error" class="col-md-4">
+				<p ng-message="email">Email is Invalid.</p>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="address" class="control-label col-md-4">Address:</label>
+			<input type="text" name="address" placeholder="Where can we find you?" ng-model="formPostCtrl.person.address" ng-class="{'has-error':frmPost.address.$invalid}"
+				class="col-md-4">
+		</div>
+		<div class="form-group">
+			<label for="about" class="control-label col-md-4">About Youself:</label>
+			<textarea  name="about" placeholder="Tell us about yourself!" ng-model="formPostCtrl.person.about" ng-class="{'has-error':frmPost.gender.$invalid}"
+				class="col-md-4"></textarea>
+		</div>
+		<div class="form-group col-md-4">
+				<button ng-disabled="frmPost.$invalid"  ng-click="formPostCtrl.savePerson(frmPost,formPostCtrl.person)" type="submit" class="btn btn-success">Submit</button>
+				<button  type="button" ng-click="formPostCtrl.resetForm(frmPost,person)" class="btn btn-default">Clear</button>
+			
+		</div>
+			
 	</form>
 </div>

@@ -24,20 +24,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
-				.antMatchers("/styles/**", "/images/**", "/scripts/**", "/index").permitAll()
+				/*.antMatchers("/styles/**", "/images/**", "/scripts/**", "/index").permitAll()
 				.antMatchers(HttpMethod.POST,"/person/**").hasRole("ADMIN")
 				.antMatchers(HttpMethod.PUT,"/person/**").hasAnyRole("ADMIN","USER")
-				.antMatchers(HttpMethod.DELETE,"/person/**").hasRole("ADMIN")
+				.antMatchers(HttpMethod.DELETE,"/person/**").hasRole("ADMIN")*/
 				.anyRequest().permitAll().and()
-				.csrf().disable()
-			.formLogin()
+				.csrf().disable();
+			/*.formLogin()
 				.loginPage("/login")
 				.permitAll()
 				.failureUrl("/login")
 				.and()
 			.httpBasic().and()	
 			.logout()
-                .permitAll();
+                .permitAll();*/
 	}
 
 	@Override

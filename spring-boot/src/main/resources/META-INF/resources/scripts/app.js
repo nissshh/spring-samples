@@ -27,9 +27,9 @@ var app = angular
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/npdata.html',
-        controller: 'NPDataCtrl',
-        controllerAs: 'npdata'
+        templateUrl: 'views/main.html',
+        controller: 'MainCtrl',
+        controllerAs: 'main'
       })
       .when('/about', {
         templateUrl: 'views/about.html',

@@ -31,7 +31,7 @@ public class PersonController {
 	@ResponseBody
 	public List<Person> getPersons(@RequestParam(required = false, value = "gender") String sortBy, @RequestParam(required = false, value = "company") String year) {
 		List<Person> persons = repository.findAll();
-		persons.forEach(item->logger.info(item.toString()));				
+		persons.forEach(item->logger.debug(item.toString()));				
 		return persons;
 	}
 	
@@ -39,14 +39,14 @@ public class PersonController {
 	@ResponseBody
 	public Person getPersons(@PathVariable ("name") String name) {
 		Person person = repository.findOneByName(name);
-		logger.info("Data found as :",person);				
+		logger.debug("Data found as :",person);				
 		return person;
 	}
 
 	@RequestMapping(consumes="application/json", produces = "application/json", method = RequestMethod.PUT)
 	@ResponseBody
 	public Person addPerson(@RequestBody Person person) {
-		logger.info("Inserting:",person.toString());
+		logger.debug("Inserting:",person.toString());
 		Person rPerson = repository.insert(person);
 		return rPerson ;
 	}
@@ -54,7 +54,7 @@ public class PersonController {
 	@RequestMapping(consumes="application/json", produces = "application/json", method = RequestMethod.POST)
 	@ResponseBody
 	public Person updatePerson(@RequestBody Person person) {
-		logger.info("Updating:",person.toString());
+		logger.debug("Updating:",person.toString());
 		Person rPerson = repository.save(person);
 		return rPerson ;
 	}
@@ -62,7 +62,7 @@ public class PersonController {
 	@RequestMapping(path="/{id}", produces = "application/json", method = RequestMethod.DELETE)
 	@ResponseBody
 	public String deletePerson(@RequestParam("id") String id) {
-		logger.info("Deleting:",id);
+		logger.debug("Deleting:",id);
 		repository.delete(id);
 		return "";
 	}
