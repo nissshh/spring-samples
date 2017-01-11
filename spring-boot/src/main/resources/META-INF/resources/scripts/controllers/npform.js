@@ -7,7 +7,8 @@
  * # AboutCtrl
  * Controller of the testdataApp
  */
-app.controller('NPFormCtrl',['$scope','$http','$log',function ($scope,$http,$log) {
+angular.module('Authentication')
+app.controller('NPFormCtrl',['$scope','$http','$log' , function ($scope,$http,$log) {
 	var self  = this;
 
 
@@ -26,7 +27,7 @@ app.controller('NPFormCtrl',['$scope','$http','$log',function ($scope,$http,$log
 		} 
 	}
 	
-
+	
 	self.resetForm = function(personForm, person) {
 		$log.debug("Formcleared");
 		$scope.person = angular.copy({});

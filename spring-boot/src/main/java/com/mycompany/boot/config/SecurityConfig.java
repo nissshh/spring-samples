@@ -14,8 +14,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
  * @author NishantS
  *
  */
-@Configuration
-@EnableWebSecurity
+/*@Configuration*/
+/*@EnableWebSecurity(debug=true)*/
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	/**

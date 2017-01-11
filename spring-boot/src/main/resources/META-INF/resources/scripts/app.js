@@ -8,8 +8,10 @@
  *
  * Main module of the application.
  */
-var app = angular
-  .module('testdataApp', [
+angular.module('Authentication', [])
+var app =
+	angular.module('testdataApp', [
+	'Authentication', 	
     'ngAnimate',
     'ngAria',
     'ngCookies',
@@ -31,6 +33,10 @@ var app = angular
         controller: 'MainCtrl',
         controllerAs: 'main'
       })
+      .when('/login', {
+        templateUrl: 'modules/authentication/views/login.html',
+        controller: 'LoginController',
+      })
       .when('/about', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl',
@@ -44,9 +50,25 @@ var app = angular
       .when('/npform', {
         templateUrl: 'views/npform.html',
         controller: 'NPFormCtrl',
-        controllerAs: 'npform'
+        controllerAs: 'formPostCtrl'
       })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/login'
       });
-  });
+  })
+.run(['$rootScope', '$location', '$cookieStore', '$http','$log',
+    function ($rootScope, $location, $cookieStore, $http,$log) {
+        // keep user logged in after page refresh
+        $rootScope.globals = $cookieStore.get('globals') || {};
+        if ($rootScope.globals.currentUser) {
+           $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
+        }
+ 
+        $rootScope.$on('$locationChangeStart', function (event, next, current) {
+            // redirect to login page if not logged in
+        	$log.log('inside $locationChangeStart'+$cookieStore);
+            if ($location.path() !== '/login' && !$rootScope.globals.currentUser) {
+                $location.path('/login');
+            }
+        });
+  }]);
